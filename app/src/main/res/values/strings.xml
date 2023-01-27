@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">MovieProject</string>
+
+    <string name="list_button_description">This button is for switching between listing types</string>
+    <string name="image_movie_description">This is the poster of the movie</string>
+    <string name="favorite_button_description">This button is for adding the movie to your favorites</string>
+    <string name="image_star_description">This is a star image</string>
+    <string name="text_cast">Cast</string>
+    <string name="text_similar_movies">Similar Movies</string>
+    <string name="text_reviews">Reviews</string>
+    <string name="search_edit_text_hint">Search a movie</string>
+    <string name="title_popular_movies">Popular Movies</string>
+    <string name="title_top_rated_movies">Top Rated Movies</string>
+    <string name="title_favorites">Favorites</string>
+    <string name="title_search">Search</string>
+    <string name="text_release_date"><b><i>Release Date\n</i></b></string>
+</resources>

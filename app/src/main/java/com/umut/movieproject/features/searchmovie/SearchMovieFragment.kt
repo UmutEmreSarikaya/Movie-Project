@@ -88,7 +88,7 @@ class SearchMovieFragment : Fragment() {
                 viewModel.setSearchedMovies(it?.movies)
             }
 
-            movieListAdapter.setMovieList(viewModel.getSearchedMovies())
+            movieListAdapter.movies = viewModel.getSearchedMovies()
         }
 
         viewModel.favoriteLiveData.observe((viewLifecycleOwner)) {
@@ -118,7 +118,7 @@ class SearchMovieFragment : Fragment() {
                 }
                 queryIsEmpty = false
             } else if (binding.editTextSearch.tag == true) {
-                movieListAdapter.setMovieList(mutableListOf())
+                movieListAdapter.movies = mutableListOf()
                 queryIsEmpty = true
             }
         }

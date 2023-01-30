@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -20,6 +19,7 @@ import com.umut.movieproject.R
 import com.umut.movieproject.databinding.FragmentMovieDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import java.text.DateFormatSymbols
 
 @AndroidEntryPoint
 class MovieDetailFragment : Fragment() {
@@ -108,6 +108,11 @@ class MovieDetailFragment : Fragment() {
             .into(binding.imageMovieDetail)
         binding.textRating.text = movie?.voteAverage.toString()
 
+
+
+        val releaseDate = movie?.releaseDate?.let { formatDate(it) }
+        binding.textReleaseDate.append(releaseDate)
+
         binding.recyclerSimilarMovies.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 val visibleItemCount = similarMovieLayoutManager.childCount
@@ -174,4 +179,12 @@ class MovieDetailFragment : Fragment() {
         requireActivity().findViewById<BottomNavigationView>(R.id.bottom_navigation).visibility =
             View.VISIBLE
     }*/
+
+    private fun formatDate(date: String): String{
+
+
+        val splitDate: List<String> = date.split("-")
+        return splitDate[2] + " " + DateFormatSymbols.getInstance().months[splitDate[1].toInt() - 1] + " " + splitDate[0]
+    }
+
 }

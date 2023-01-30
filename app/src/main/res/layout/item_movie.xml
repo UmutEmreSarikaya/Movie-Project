@@ -18,6 +18,7 @@
             android:id="@+id/image_movie"
             android:layout_width="match_parent"
             android:layout_height="260dp"
+            android:scaleType="centerCrop"
             android:contentDescription="@string/image_movie_description"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

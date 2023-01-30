@@ -73,7 +73,6 @@ class ListMovieFragment : Fragment() {
                 val totalItemCount = layoutManager.itemCount
                 val lastVisibleItem = layoutManager.findLastVisibleItemPosition()
 
-                Log.d("mlog,", "hi")
                 if (!isLoading) {
 
                     if (lastVisibleItem >= totalItemCount - 10) {
@@ -104,7 +103,7 @@ class ListMovieFragment : Fragment() {
                 viewModel.setMovieList(it?.movies)
                 viewModel.setLoadFirstPage(false)
             }
-            movieListAdapter.setMovieList(viewModel.getMovieList())
+            movieListAdapter.movies = viewModel.getMovieList()
         }
 
         viewModel.favoriteLiveData.observe((viewLifecycleOwner)) {

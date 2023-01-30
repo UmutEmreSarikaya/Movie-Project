@@ -3,6 +3,7 @@ package com.umut.movieproject.features.movielist
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -25,8 +26,26 @@ class MovieListAdapter(
         GRID
     }
 
-    private var movies: MutableList<Movie?>? = mutableListOf()
+    //private var movies: MutableList<Movie?>? = mutableListOf()
     private var favoriteMovies: MutableList<Movie?>? = mutableListOf()
+
+    private val diffUtil = object: DiffUtil.ItemCallback<Movie>(){
+        override fun areItemsTheSame(oldItem: Movie, newItem: Movie): Boolean {
+            return oldItem == newItem
+        }
+
+        override fun areContentsTheSame(oldItem: Movie, newItem: Movie): Boolean {
+            return oldItem == newItem
+        }
+    }
+
+    private val recyclerListDiffer = AsyncListDiffer(this, diffUtil)
+
+    var movies: MutableList<Movie?>?
+        get() = recyclerListDiffer.currentList
+        set(value) = recyclerListDiffer.submitList(value)
+
+
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -122,12 +141,12 @@ class MovieListAdapter(
         notifyDataSetChanged()
     }*/
 
-    fun setMovieList(newMovies: MutableList<Movie?>?) {
+    /*fun setMovieList(newMovies: MutableList<Movie?>?) {
         val movieDiffUtil = MovieDiffUtil(movies, newMovies)
         val diffResult = DiffUtil.calculateDiff(movieDiffUtil)
         this.movies = newMovies
         diffResult.dispatchUpdatesTo(this)
-    }
+    }*/
 
 
     fun setFavoriteMovieList(favoriteMovies: MutableList<Movie?>?) {
